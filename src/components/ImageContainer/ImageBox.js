@@ -13,7 +13,7 @@ const ImageBox = ({ image }) => {
     >
       <img
         style={{
-          maxWidth: "90%",
+          maxWidth: "60%",
           maxHeight: "50%",
           width: "auto",
           height: "auto",
