@@ -1,8 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, IconButton, Stack } from "@mui/material";
-import ImageContainer from "../components/ImageContainer/ImageContainer";
 import Sidebar from "../components/Sidebar/Sidebar";
-import SideMenubar from "../components/Sidebar/SideMenubar";
 import ResultTabs from "../components/ResultTabs/ResultTabs";
 import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";

@@ -1,31 +1,11 @@
-import {
-  Box,
-  Card,
-  Collapse,
-  Divider,
-  Grid,
-  Container,
-  IconButton,
-} from "@mui/material";
-
+import { Grid, IconButton } from "@mui/material";
 import { AiFillHome, AiFillPrinter, AiFillSave } from "react-icons/ai";
 import { BsFillChatLeftFill } from "react-icons/bs";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Stack from "@mui/material/Stack";
 import React, { useEffect } from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
-import ChatBubbleOutlinedIcon from "@mui/icons-material/ChatBubbleOutlined";
-import LocalPrintshopRoundedIcon from "@mui/icons-material/LocalPrintshopRounded";
-
-import { FcOk, FcCancel } from "react-icons/fc";
-import { ExpandMore } from "@mui/icons-material";
 import CustomizedRadios from "../Buttons/RadioButtonsGroup";
 import CheckListSidebar from "./CheckListSidebar";
 import { useNavigate } from "react-router-dom";
-// import TickCheckbox from "../components/SidebarButton/TickButton";
 
 const Sidebar = ({ Information, sidebarLabel }) => {
   const navigate = useNavigate();
@@ -35,9 +15,6 @@ const Sidebar = ({ Information, sidebarLabel }) => {
   const handleSetRadioValue = (value) => {
     setRadioValue(value);
   };
-  useEffect(() => {
-    console.log(radioValue);
-  }, [radioValue]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -49,6 +26,7 @@ const Sidebar = ({ Information, sidebarLabel }) => {
   if (radioValue == "Help") {
     navigate("/help");
   }
+  const iconSx = { display: "flex", flexDirection: "column" };
   return (
     <>
       <Stack
@@ -68,17 +46,21 @@ const Sidebar = ({ Information, sidebarLabel }) => {
           }}
           lg="12"
         >
-          <IconButton>
+          <IconButton sx={iconSx}>
             <AiFillHome size="35" color="black" />
+            <p style={{ fontSize: "15px" }}>Home</p>
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton sx={iconSx} aria-label="delete">
             <AiFillSave size="35" color="black" />
+            <p style={{ fontSize: "15px" }}>Save</p>
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton sx={iconSx} aria-label="delete">
             <AiFillPrinter size="35" color="black" />
+            <p style={{ fontSize: "15px" }}>Print</p>
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton sx={iconSx} aria-label="delete">
             <BsFillChatLeftFill size="35" color="black" />
+            <p style={{ fontSize: "15px" }}>Comments</p>
           </IconButton>
         </Stack>
 
