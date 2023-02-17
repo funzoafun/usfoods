@@ -1,4 +1,12 @@
-import { Box, Card, Collapse, Divider, Grid, Container } from "@mui/material";
+import {
+  Box,
+  Card,
+  Collapse,
+  Divider,
+  Grid,
+  Container,
+  IconButton,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Stack from "@mui/material/Stack";
 import React from "react";
@@ -21,69 +29,38 @@ const Sidebar = ({ Information, sidebarLabel }) => {
   };
   return (
     <>
-      <Container
-        sx={{
-          background: "#fffafa",
-          minHeight: "79vh",
-          maxHeight: "auto",
-          backgroundColor: "primary.white",
-          border: "5px solid #0073cf",
-          borderRadius: "10px",
-        }}
-      >
-        <Stack spacing={5}>
-          <div
-            style={{
-              marginTop: "0.5ch",
-              backgroundColor: "#fff0f5",
-              borderRadius: "10px",
-            }}
-            className="row-6 border-bottom"
-          >
-            <Stack
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-              direction="row"
-            >
-              <Button>
-                <HomeRoundedIcon
-                  sx={{
-                    color: "black",
-                    fontSize: 35,
-                    marginLeft: "1.5ch",
-                    paddingRight: "1px",
-                  }}
-                />
-              </Button>
-              <Button>
-                <SaveRoundedIcon sx={{ color: "black", fontSize: 35 }} />
-              </Button>
-              <Button>
-                <LocalPrintshopRoundedIcon
-                  sx={{ color: "black", fontSize: 35 }}
-                />
-              </Button>
-              <Button>
-                <ChatBubbleOutlinedIcon
-                  sx={{ color: "black", fontSize: 35, marginRight: "1.5ch" }}
-                />
-              </Button>
-            </Stack>
-          </div>
-
-          <div className="row">
-            <Divider orientation="horizontal">
-              <h5>{sidebarLabel}</h5>
-            </Divider>
-          </div>
+      <Grid sx={{ display: "flex" }} container direction="row" lg="12">
+        <Grid
+          justifyContent="center"
+          sx={{ marginBottom: "2ch", display: "flex", background: "grey" }}
+          lg="12"
+        >
+          <ButtonGroup size="large" aria-label="large button group">
+            <IconButton aria-label="delete" size="large">
+              <HomeRoundedIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton aria-label="delete" size="large">
+              <SaveRoundedIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton aria-label="delete" size="large">
+              <LocalPrintshopRoundedIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton aria-label="delete" size="large">
+              <ChatBubbleOutlinedIcon fontSize="inherit" />
+            </IconButton>
+          </ButtonGroup>
+        </Grid>
+        <Grid>
+          <h4>{sidebarLabel}</h4>
+        </Grid>
+        <Grid item lg="12">
           <Box
             sx={{
+              marginTop: "2ch",
               flexDirection: "column",
-              height: "auto",
-              maxHeight: "60vh",
-              overflow: "hidden",
+              height: "inherit",
+              maxHeight: "69vh",
+              overflowX: "hidden",
               overflowY: "scroll",
             }}
           >
@@ -94,20 +71,24 @@ const Sidebar = ({ Information, sidebarLabel }) => {
                     {info.value ? (
                       <Box
                         sx={{
-                          borderLeftStyle: "solid",
-                          borderColor: "#1565c0",
-                          padding: "1ch",
+                          // borderLeftStyle: "solid",
+                          // borderColor: "#1565c0",
+                          // padding: "1ch",
+                          background: "grey",
+                          maxHeight: "4ch",
                         }}
                       >
                         <FcOk fontSize={30} />
                       </Box>
                     ) : (
                       <Box
-                        sx={{
-                          borderLeftStyle: "solid",
-                          borderColor: "#1565c0",
-                          padding: "1ch",
-                        }}
+                        sx={
+                          {
+                            // borderLeftStyle: "solid",
+                            // borderColor: "#1565c0",
+                            // padding: "1ch",
+                          }
+                        }
                       >
                         <FcCancel fontSize={30} />
                       </Box>
@@ -186,8 +167,8 @@ const Sidebar = ({ Information, sidebarLabel }) => {
               </Stack>
             </div>
           </Box>
-        </Stack>
-      </Container>
+        </Grid>
+      </Grid>
     </>
   );
 };

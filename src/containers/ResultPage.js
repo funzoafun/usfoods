@@ -40,27 +40,29 @@ const ResultPage = () => {
   };
 
   return (
-    <Container sx={{ display: "flex", marginTop: "5ch" }} maxWidth="xl">
-      <Box sx={{ justifyContent: "center", alignContent: "center" }}>
-        <div className="row justify-content-end">
-          <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <SideMenubar />
-          </div>
-          <div className="col-lg-3 col-md-5 col-sm-4 col-xs-4">
-            <Sidebar
-              showTab={true}
-              sidebarLabel="LABEL REVIEW"
-              Information={labelInfo}
-            />
-          </div>
-          <div className="col-lg-7 col-md-5 col-sm-6 col-xs-6 review">
-            <Stack spacing={2} sx={{ alignContent: "center" }}>
-              <h3>Result Page</h3>
-              <ImageContainer />
-            </Stack>
-          </div>
-        </div>
-      </Box>
+    <Container
+      disableGutters
+      sx={{
+        justifyContent: "center",
+        border: "1px solid black",
+        marginTop: "5ch",
+      }}
+    >
+      <Grid container>
+        <Grid sx={{ borderRight: "1px solid black" }} item lg={3}>
+          <Sidebar
+            showTab={true}
+            sidebarLabel="LABEL REVIEW"
+            Information={labelInfo}
+          />
+        </Grid>
+        <Grid item lg={9}>
+          <Stack spacing={2} sx={{ alignContent: "center" }}>
+            <h3>Result Page</h3>
+            <ImageContainer />
+          </Stack>
+        </Grid>
+      </Grid>
     </Container>
   );
 };
