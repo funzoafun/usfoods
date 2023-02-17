@@ -1,9 +1,3 @@
-@media (min-width: 1200px) {
-  .container {
-    width: 1000px;
-  }
-}
-
 .review {
   border-radius: 10px;
   border: 5px solid #0073cf;

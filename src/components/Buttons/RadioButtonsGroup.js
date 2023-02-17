@@ -1,72 +1,98 @@
 import * as React from "react";
+import { styled } from "@mui/material/styles";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import { useNavigate } from "react-router-dom";
+import FormLabel from "@mui/material/FormLabel";
 
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Box from "@mui/material/Box";
+const BpIcon = styled("span")(({ theme }) => ({
+  borderRadius: "50%",
+  width: 16,
+  height: 16,
+  boxShadow:
+    theme.palette.mode === "dark"
+      ? "0 0 0 1px rgb(16 22 26 / 40%)"
+      : "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
+  backgroundColor: theme.palette.mode === "dark" ? "#394b59" : "#f5f8fa",
+  backgroundImage:
+    theme.palette.mode === "dark"
+      ? "linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))"
+      : "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
+  ".Mui-focusVisible &": {
+    outline: "2px auto rgba(19,124,189,.6)",
+    outlineOffset: 2,
+  },
+  "input:hover ~ &": {
+    backgroundColor: theme.palette.mode === "dark" ? "#30404d" : "#ebf1f5",
+  },
+  "input:disabled ~ &": {
+    boxShadow: "none",
+    background:
+      theme.palette.mode === "dark"
+        ? "rgba(57,75,89,.5)"
+        : "rgba(206,217,224,.5)",
+  },
+}));
 
-const RadioButtonsGroup = () => {
-  const navigate = useNavigate();
+const BpCheckedIcon = styled(BpIcon)({
+  backgroundColor: "#137cbd",
+  backgroundImage:
+    "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
+  "&:before": {
+    display: "block",
+    width: 16,
+    height: 16,
+    backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
+    content: '""',
+  },
+  "input:hover ~ &": {
+    backgroundColor: "#106ba3",
+  },
+});
 
-  const handleChange = (event) => {
-    console.log("event: ", event.target.value);
-    navigate(`/${event.target.value}`);
-  };
-
+// Inspired by blueprintjs
+function BpRadio(props) {
   return (
-    <div className="radiobutton" style={{ textAlign: "center" }}>
-      {/* <RadioGroup
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          name="row-radio-buttons-group"
-        >
-          <FormControlLabel
-            value="mir"
-            onChange={handleChange}
-            label="MIR And Barcode Orientation"
-            control={<Radio />}
-          />
-          <FormControlLabel
-            value="comparision"
-            onChange={handleChange}
-            control={<Radio />}
-            label="Comparision"
-          />
-          <FormControlLabel
-            value="otic-label-review"
-            onChange={handleChange}
-            control={<Radio />}
-            label="Otic Label Review"
-          />
-        </RadioGroup> */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          "& > *": {
-            m: 1,
-          },
-        }}
-      >
-        <ButtonGroup variant="contained" aria-label="text button group">
-          <Button value="mir" onClick={handleChange}>
-            MIR And Barcode Orientation
-          </Button>
-          <Button value="comparision" onClick={handleChange}>
-            Comparision
-          </Button>
-          <Button value="otic-label-review" onClick={handleChange}>
-            Otic Label Review
-          </Button>
-        </ButtonGroup>
-      </Box>
-    </div>
+    <Radio
+      disableRipple
+      color="default"
+      checkedIcon={<BpCheckedIcon />}
+      icon={<BpIcon />}
+      {...props}
+    />
   );
-};
+}
 
-export default RadioButtonsGroup;
+export default function CustomizedRadios({ setRadioValue, value }) {
+  console.log(value);
+  return (
+    <FormControl>
+      <RadioGroup
+        defaultValue="female"
+        onChange={(event) => {
+          setRadioValue(event.target.value);
+        }}
+        aria-labelledby="demo-customized-radios"
+        name="customized-radios"
+      >
+        <FormControlLabel value="show-menu" control={<BpRadio />} />
+        <FormControlLabel
+          value="Checklist"
+          label={value == "show-menu" && "Label Review"}
+          control={<BpRadio />}
+        />
+        <FormControlLabel
+          value="Health Status"
+          label={value == "show-menu" && "Health Status"}
+          control={<BpRadio />}
+        />
+        <FormControlLabel
+          value="Help"
+          label={value == "show-menu" && "Help"}
+          control={<BpRadio />}
+        />
+      </RadioGroup>
+    </FormControl>
+  );
+}
